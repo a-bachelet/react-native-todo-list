@@ -1,16 +1,30 @@
 import React from "react";
 
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from "react-native";
 
-export default function Task(props: { text: string }) {
+export default function Task(props: {
+  text: string;
+  onPress: (text: string) => void;
+}) {
   return (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => {
+        props.onPress(props.text);
+      }}
+    >
       <View style={styles.itemLeft}>
         <View style={styles.square}></View>
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
       <View style={styles.circular}></View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

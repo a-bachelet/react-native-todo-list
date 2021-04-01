@@ -24,13 +24,23 @@ export default function App() {
     Keyboard.dismiss();
   };
 
+  const spliceTask = (text: string) => {
+    const index = tasks.indexOf(text);
+
+    console.log(index);
+    tasks.splice(index, 1);
+    setTasks([...tasks]);
+  };
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.tasksSection}>
         <Text style={styles.title}>Todo today</Text>
         <View style={styles.tasksList}>
           {tasks.map((t) => {
-            return <Task text={t} key={t.toString()}></Task>;
+            return (
+              <Task text={t} key={t.toString()} onPress={spliceTask}></Task>
+            );
           })}
         </View>
       </View>
